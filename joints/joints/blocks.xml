@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<palette>
+	
+	<!-- ==== mouse joints ==== -->
+	
+	<block tag="create-mouse-joint" spec="create mouse joint for %0" code="Joints.createMouseJoint(~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+	
+	<block tag="set-mouse-joint-target" spec="set target of mouse joint %0 to ( x: %1 y: %2 )" code="cast(~, box2D.dynamics.joints.B2MouseJoint).setTarget(Joints.toVec(~, ~));" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<number order="1"></number>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="set-mouse-joint-property" spec="set %1 of mouse joint %0 to %2" code="cast(~, box2D.dynamics.joints.B2MouseJoint).set~(~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="damping ratio" code="DampingRatio"></c>
+					<c text="frequency" code="Frequency"></c>
+					<c text="maximum force" code="MaxForce"></c>
+				</choices>
+			</dropdown>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="get-mouse-joint-property" spec="%1 of mouse joint %0" code="cast(~, box2D.dynamics.joints.B2MouseJoint).get~()" type="normal" color="green" returns="anything">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="damping ratio" code="DampingRatio"></c>
+					<c text="frequency" code="Frequency"></c>
+					<c text="maximum force" code="MaxForce"></c>
+				</choices>
+			</dropdown>
+			<anything order="2"></anything>
+		</fields>
+	</block>
+	
+	<!-- ==== distance joints ==== -->
+	
+	<block tag="create-distance-joint" spec="create distance joint between %0 at ( x: %1 y: %2 ) and %3 at ( x: %4 y: %5 )" code="Joints.createDistanceJoint(~, ~, ~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<actor order="3"></actor>
+			<number order="4"></number>
+			<number order="5"></number>
+		</fields>
+	</block>
+	
+	<block tag="create-stationary-distance-joint" spec="create distance joint between %0 at ( x: %1 y: %2 ) and scene at ( x: %3 y: %4 )" code="Joints.createDistanceJoint(~, ~, ~, null, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<number order="3"></number>
+			<number order="4"></number>
+		</fields>
+	</block>
+	
+	<block tag="set-distance-joint-property" spec="set %1 of distance joint %0 to %2" code="cast(~, box2D.dynamics.joints.B2DistanceJoint).set~(~));" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="damping ratio" code="DampingRatio("></c>
+					<c text="frequency" code="Frequency("></c>
+					<c text="length" code="Length(Engine.toPhysicalUnits"></c>
+				</choices>
+			</dropdown>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="get-distance-joint-property" spec="%1 of distance joint %0" code="(cast(~, box2D.dynamics.joints.B2DistanceJoint).get~)" type="normal" color="green" returns="anything">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="damping ratio" code="DampingRatio()"></c>
+					<c text="frequency" code="Frequency()"></c>
+					<c text="length" code="Length() * Engine.physicsScale"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<!-- ==== line joints ==== -->
+	
+	<block tag="create-line-joint" spec="create line joint between %0 at ( x: %1 y: %2 ) and scene with axis ( x: %3 y: %4 )" code="Joints.createLineJoint(~, ~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<number order="3"></number>
+			<number order="4"></number>
+		</fields>
+	</block>
+	
+	<block tag="enable-line-joint-property" spec="%2 %1 of line joint %0" code="cast(~, box2D.dynamics.joints.B2LineJoint).enable~(~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="limit" code="Limit"></c>
+					<c text="motor" code="Motor"></c>
+				</choices>
+			</dropdown>
+			<dropdown order="2">
+				<choices>
+					<c text="enable" code="true"></c>
+					<c text="disable" code="false"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<block tag="set-line-joint-limits" spec="set limits of line joint %0 to ( lower: %1 upper: %2 )" code="cast(~, box2D.dynamics.joints.B2LineJoint).setLimits(~, ~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<number order="1"></number>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="set-line-joint-property" spec="set %1 of line joint %0 to %2" code="cast(~, box2D.dynamics.joints.B2LineJoint).set~(~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="maximum motor force" code="MaxMotorForce"></c>
+					<c text="motor speed" code="MotorSpeed"></c>
+				</choices>
+			</dropdown>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="is-line-joint-property-enabled" spec="is %1 of line joint %0 enabled" code="cast(~, box2D.dynamics.joints.B2LineJoint).is~Enabled()" type="normal" color="green" returns="boolean">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="limit" code="Limit"></c>
+					<c text="motor" code="Motor"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<block tag="get-line-joint-property" spec="%1 of line joint %0" code="cast(~, box2D.dynamics.joints.B2LineJoint).get~()" type="normal" color="green" returns="anything">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="joint speed" code="JointSpeed"></c>
+					<c text="joint translation" code="JointTranslation"></c>
+					<c text="lower limit" code="lowerLimit"></c>
+					<c text="upper limit" code="upperLimit"></c>
+					<c text="motor force" code="MotorForce"></c>
+					<c text="motor speed" code="MotorSpeed"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<!-- ==== prismatic joints ==== -->
+	
+	<block tag="create-prismatic-joint" spec="create prismatic joint between %0 at ( x: %1 y: %2 ) and scene with axis ( x: %3 y: %4 )" code="Joints.createPrismaticJoint(~, ~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<number order="3"></number>
+			<number order="4"></number>
+		</fields>
+	</block>
+	
+	<block tag="enable-prismatic-joint-property" spec="%2 %1 of prismatic joint %0" code="cast(~, box2D.dynamics.joints.B2PrismaticJoint).enable~(~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="limit" code="Limit"></c>
+					<c text="motor" code="Motor"></c>
+				</choices>
+			</dropdown>
+			<dropdown order="2">
+				<choices>
+					<c text="enable" code="true"></c>
+					<c text="disable" code="false"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<block tag="set-prismatic-joint-limits" spec="set limits of prismatic joint %0 to ( lower: %1 upper: %2 )" code="cast(~, box2D.dynamics.joints.B2PrismaticJoint).setLimits(~, ~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<number order="1"></number>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="set-prismatic-joint-property" spec="set %1 of prismatic joint %0 to %2" code="cast(~, box2D.dynamics.joints.B2PrismaticJoint).set~(~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="maximum motor force" code="MaxMotorForce"></c>
+					<c text="motor speed" code="MotorSpeed"></c>
+				</choices>
+			</dropdown>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="is-prismatic-joint-property-enabled" spec="is %1 of prismatic joint %0 enabled" code="cast(~, box2D.dynamics.joints.B2PrismaticJoint).is~Enabled()" type="normal" color="green" returns="boolean">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="limit" code="Limit"></c>
+					<c text="motor" code="Motor"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<block tag="get-prismatic-joint-property" spec="%1 of prismatic joint %0" code="cast(~, box2D.dynamics.joints.B2PrismaticJoint).get~()" type="normal" color="green" returns="anything">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="joint speed" code="JointSpeed"></c>
+					<c text="joint translation" code="JointTranslation"></c>
+					<c text="lower limit" code="lowerLimit"></c>
+					<c text="upper limit" code="upperLimit"></c>
+					<c text="motor force" code="MotorForce"></c>
+					<c text="motor speed" code="MotorSpeed"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<!-- ==== revolute joints ==== -->
+	
+	<block tag="create-revolute-joint-at-overlap" spec="create revolute joint between %0 at ( x: %1 y: %2 ) and %3" code="Joints.createRevoluteJointAtOverlap(~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<actor order="3"></actor>
+		</fields>
+	</block>
+	
+	<block tag="create-revolute-joint" spec="create revolute joint between %0 at ( x: %1 y: %2 ) and %3 at ( x: %4 y: %5 )" code="Joints.createRevoluteJoint(~, ~, ~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<actor order="3"></actor>
+			<number order="4"></number>
+			<number order="5"></number>
+		</fields>
+	</block>
+	
+	<block tag="create-stationary-revolute-joint-at-overlap" spec="create revolute joint between %0 at ( x: %1 y: %2 ) and scene" code="Joints.createRevoluteJointAtOverlap(~, ~, ~, null);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="create-stationary-revolute-joint" spec="create revolute joint between %0 at ( x: %1 y: %2 ) and scene at ( x: %3 y: %4 )" code="Joints.createRevoluteJoint(~, ~, ~, null, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<number order="3"></number>
+			<number order="4"></number>
+		</fields>
+	</block>
+	
+	<block tag="enable-revolute-joint-property" spec="%2 %1 of revolute joint %0" code="cast(~, box2D.dynamics.joints.B2RevoluteJoint).enable~(~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="limit" code="Limit"></c>
+					<c text="motor" code="Motor"></c>
+				</choices>
+			</dropdown>
+			<dropdown order="2">
+				<choices>
+					<c text="enable" code="true"></c>
+					<c text="disable" code="false"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<block tag="set-revolute-joint-limits" spec="set limits of revolute joint %0 to ( lower: %1 upper: %2 )" code="cast(~, box2D.dynamics.joints.B2RevoluteJoint).setLimits(~, ~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<number order="1"></number>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="set-revolute-joint-property" spec="set %1 of revolute joint %0 to %2" code="cast(~, box2D.dynamics.joints.B2RevoluteJoint).set~(~);" type="action" color="green" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="maximum motor torque" code="MaxMotorTorque"></c>
+					<c text="motor speed" code="MotorSpeed"></c>
+				</choices>
+			</dropdown>
+			<number order="2"></number>
+		</fields>
+	</block>
+	
+	<block tag="is-revolute-joint-property-enabled" spec="is %1 of revolute joint %0 enabled" code="cast(~, box2D.dynamics.joints.B2RevoluteJoint).is~Enabled()" type="normal" color="green" returns="boolean">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="limit" code="Limit"></c>
+					<c text="motor" code="Motor"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<block tag="get-revolute-joint-property" spec="%1 of revolute joint %0" code="cast(~, box2D.dynamics.joints.B2RevoluteJoint).get~()" type="normal" color="green" returns="anything">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="joint angle" code="JointAngle"></c>
+					<c text="joint speed" code="JointSpeed"></c>
+					<c text="lower limit" code="lowerLimit"></c>
+					<c text="upper limit" code="upperLimit"></c>
+					<c text="motor speed" code="MotorSpeed"></c>
+					<c text="motor torque" code="MotorTorque"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<!-- ==== weld joints ==== -->
+	
+	<block tag="create-weld-joint-at-overlap" spec="create weld joint between %0 at ( x: %1 y: %2 ) and %3" code="Joints.createWeldJointAtOverlap(~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<actor order="3"></actor>
+		</fields>
+	</block>
+	
+	<block tag="create-weld-joint" spec="create weld joint between %0 at ( x: %1 y: %2 ) and %3 at ( x: %4 y: %5 )" code="Joints.createWeldJoint(~, ~, ~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<actor order="3"></actor>
+			<number order="4"></number>
+			<number order="5"></number>
+		</fields>
+	</block>
+	
+	<block tag="create-stationary-weld-joint" spec="create weld joint between %0 and scene" code="Joints.createStationaryWeldJoint(~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+	
+	<!-- ==== pulley joints ==== -->
+	
+	<block tag="create-pulley-joint" spec="create pulley joint between %0 at ( x: %1 y: %2 ) and %3 at ( x: %4 y: %5 ) with anchors ( x: %6 y: %7 ) and ( x: %8 y: %9 ) and ratio %10" code="Joints.createPulleyJoint(~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<actor order="0"></actor>
+			<number order="1"></number>
+			<number order="2"></number>
+			<actor order="3"></actor>
+			<number order="4"></number>
+			<number order="5"></number>
+			<number order="6"></number>
+			<number order="7"></number>
+			<number order="8"></number>
+			<number order="9"></number>
+			<number order="10"></number>
+		</fields>
+	</block>
+	
+	<block tag="get-pulley-joint-property" spec="%1 of pulley joint %0" code="cast(~, box2D.dynamics.joints.B2PulleyJoint).get~()" type="normal" color="green" returns="anything">
+		<fields>
+			<joint order="0"></joint>
+			<dropdown order="1">
+				<choices>
+					<c text="first length" code="Length1"></c>
+					<c text="second length" code="Length2"></c>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+	
+	<!-- ==== gear joints ==== -->
+	
+	<!--<block tag="create-gear-joint" spec="create gear joint between joint %0 joint %1 with ratio %2" code="Joints.createGearJoint(~, ~, ~);" type="action" color="red" returns="void">
+		<fields>
+			<joint order="0"></joint>
+			<joint order="1"></joint>
+			<number order="2"></number>
+		</fields>
+	</block>-->
+	
+	<!-- ==== destroy joint ==== -->
+	
+	<block tag="destroy-joint" spec="destroy joint %0" code="Joints.destroyJoint(~);" type="action" color="red" returns="void">
+		<fields>
+			<joint order="0"></joint>
+		</fields>
+	</block>
+	
+	<!-- ==== joint picker ==== -->
+	
+	<block tag="joint" spec="[sp] %0 [sp]" code="~" type="normal" color="green" returns="joint">
+		<fields>
+			<joint order="0"></joint>
+		</fields>
+	</block>
+	
+</palette>

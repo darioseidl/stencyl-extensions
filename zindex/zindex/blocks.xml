@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!--
+
+1) Types
+[void, actor, actortype, boolean, camera, color, control, font, group, number, list, anything, region, scene, sound, text, dropdown]
+
+2) The Spec
+
+<block> - An entry for a custom block
+tag = unique name for block, only ABC and - (dash) allowed
+spec = like what you see in language files, use %0, %1, etc. to specify where the spaces go
+code = output code, use ~ to specify the blanks. Must match the order in which fields are specified.
+type = any of these [normal, action, wrapper, event]
+color = any of these [blue, cyan, green, lime, purple, red, gray, charcoal]
+returns = a TYPE
+
+<fields> - A list of fields that a block contains
+For children, the tag name corresponds to a TYPE. The order attribute starts at 0 and increments by 1. Do not skip values.
+
+If you wish to use a dropdown, look at the example below for syntax.
+
+3) Stuff that is not implemented yet
+
+- No support for dropdowns yet.
+- No support for embedded blocks yet.
+- This format will be reused for customized palettes in the future.
+
+-->
+
+<palette>
+<!--
+	<block tag="moveToBottom" spec="move actor %0 to the bottom within the layer" code="ZIndex.moveToBottom(~);" type="action" color="gray" returns="void">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+	<block tag="moveToTop" spec="move actor %0 to the top within the layer" code="ZIndex.moveToTop(~);" type="action" color="gray" returns="void">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+	<block tag="moveDown" spec="move actor %0 down within the layer" code="ZIndex.moveDown(~);" type="action" color="gray" returns="void">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+	<block tag="moveUp" spec="move actor %0 up within the layer" code="ZIndex.moveUp(~);" type="action" color="gray" returns="void">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+-->
+	<block tag="moveWithinLayer" spec="move actor %1 %0 within the layer" code="ZIndex.move~(~);" type="action" color="gray" returns="void">
+		<fields>
+			<dropdown order="0">
+				<choices>
+					<c text="to the bottom" code="ToBottom"></c>
+					<c text="to the top" code="ToTop"></c>
+					<c text="down" code="Down"></c>
+					<c text="up" code="Up"></c>
+				</choices>
+			</dropdown>
+			<actor order="1"></actor>
+		</fields>
+	</block>
+	<block tag="getZIndex" spec="z-index of actor %0 within the layer" code="ZIndex.getZIndex(~)" type="normal" color="gray" returns="number">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+	<block tag="getNumberOfActors" spec="number of actors within the same layer as %0" code="ZIndex.getNumberOfActors(~)" type="normal" color="gray" returns="number">
+		<fields>
+			<actor order="0"></actor>
+		</fields>
+	</block>
+</palette>

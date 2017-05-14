@@ -1,0 +1,6 @@
+name=Z-Index Extension
+description=Allows you to change the drawing order of actors within a layer
+author=captaincomic
+website=http://community.stencyl.com/index.php/topic,31254.0.html
+version=1.1
+compatibility=all

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<palette>
+	
+	<block 
+		tag="create-console" 
+		spec="create console" 
+		code="com.nmefermmmtools.debug.Console.create();" 
+		type="action"
+		returns="void"
+		color="gray"/>
+		
+	<block 
+		tag="show-console" 
+		spec="show console" 
+		code="com.nmefermmmtools.debug.Console.show();" 
+		type="action"
+		returns="void"
+		color="gray"/>
+	
+	<block 
+		tag="hide-console" 
+		spec="hide console" 
+		code="com.nmefermmmtools.debug.Console.hide();" 
+		type="action"
+		returns="void"
+		color="gray"/>
+	
+	<block tag="set-data-field" 
+		spec="set data field ( name: %0 value: %1 )" 
+		code="com.nmefermmmtools.debug.Console.setLiveDataField(~, ~);" 
+		type="action" 
+		returns="void"
+		color="gray">
+		<fields>
+			<text order="0"/>
+			<anything order="1"/>
+		</fields>
+	</block>
+	
+	<block 
+		tag="measure-time"
+		spec="measure time ( name: %0 )"
+		code="com.nmefermmmtools.debug.Console.measureTime(~);"
+		type="action"
+		returns="void"
+		color="gray">
+		<fields>
+			<text order="0"/>
+		</fields>
+	</block>
+	
+	<block
+		tag="add-command"
+		spec="add command ( name: %0 function: %1 )"
+		code="com.nmefermmmtools.debug.Console.addCommand(~, ~);"
+		type="action"
+		returns="void"
+		color="gray"
+		hidden="true">
+		<fields>
+			<text order="0"></text>
+			<anything order="1"></anything>
+		</fields>
+	</block>
+	
+	<block
+		tag="command-arguments"
+		spec="arguments"
+		code="arguments"
+		type="normal"
+		returns="text"
+		color="lime"
+		hidden="true"/>
+	
+	<block
+		tag="add-command-wrapper"
+		spec="add command %0 [e:dash] %2"
+		code="com.nmefermmmtools.debug.Console.addCommand(~, function(arguments:String):Void {~});"
+		type="wrapper"
+		returns="void"
+		color="gray">
+		<fields>
+			<text order="0"/>
+			<code-block order="1"/>
+			<attached-block order="2" tag="command-arguments"/>
+		</fields>
+	</block>
+
+</palette>

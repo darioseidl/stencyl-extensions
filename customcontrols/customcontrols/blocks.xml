@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<palette>
+	<block tag="set-control-by-code" spec="set control %0 to key code: %1" code="CustomControls.setControl(~, ~);" type="action" color="green" returns="void">
+		<fields>
+			<control order="0"></control>
+			<number order="1"></number>
+		</fields>
+	</block>
+	<block tag="set-control" spec="set control %0 to key with name: %1" code="CustomControls.setControlByName(~, ~);" type="action" color="green" returns="void">
+		<fields>
+			<control order="0"></control>
+			<text order="1"></text>
+		</fields>
+	</block>
+	<block tag="add-key-to-control-by-code" spec="add to control %0 key code: %1 " code="CustomControls.addKeyToControl(~, ~);" type="action" color="green" returns="void">
+		<fields>
+			<control order="0"></control>
+			<number order="1"></number>
+		</fields>
+	</block>
+	<block tag="add-key-to-control" spec="add to control %0 key with name: %1" code="CustomControls.addKeyToControlByName(~, ~);" type="action" color="green" returns="void">
+		<fields>
+			<control order="0"></control>
+			<text order="1"></text>
+		</fields>
+	</block>
+	<block tag="get-control-config" spec="get control config" code="CustomControls.getControlConfig()" type="normal" color="green" returns="anything">
+		<fields>
+		</fields>
+	</block>
+	<block tag="apply-control-config" spec="apply control config %0" code="CustomControls.applyControlConfig(~);" type="action" color="green" returns="void">
+		<fields>
+			<anything order="0"></anything>
+		</fields>
+	</block>
+</palette>

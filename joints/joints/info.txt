@@ -1,0 +1,6 @@
+name=Joints
+description=Create and modify joints at runtime.
+author=captaincomic
+website=http://community.stencyl.com/index.php/topic,31947.0.html
+version=1.4
+compatibility=all

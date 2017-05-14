@@ -1,0 +1,6 @@
+name=HUD Console
+description=Show the Log in an HUD-style Console
+author=captaincomic
+website=http://community.stencyl.com/index.php/topic,35554.0.html
+version=1.3
+compatibility=all
