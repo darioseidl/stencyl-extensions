@@ -10,4 +10,4 @@ The following extensions are hosted here:
 
 [Z-Index](http://community.stencyl.com/index.php/topic,31254.0.html) (obsolete, part of Stencyl 3.2+ now)
 
-You can also find the source for the [Ragdoll Test](http://community.stencyl.com/index.php/topic,6762.0.html) game (in the joints folder).
+You can also find the source for the [Ragdoll Test](http://community.stencyl.com/index.php/topic,6762.0.html) game and a joints sandbox game (in the joints folder).
