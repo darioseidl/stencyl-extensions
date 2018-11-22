@@ -1,14 +1,12 @@
 import com.stencyl.Input;
-import flash.ui.Keyboard;
+import openfl.ui.Keyboard;
 
 class CustomControls
 {
 	public static function setControl(control:String, keyCode:Int)
 	{
 		trace("Set control " + control + " to key code " + keyCode + ".");
-		var keys:Array<Int> = new Array<Int>();
-		keys.push(keyCode);
-		Input.define(control, keys);
+		getControl(control).keys = [keyCode];
 	}
 	
 	public static function setControlByName(control:String, key:String)
@@ -17,9 +15,7 @@ class CustomControls
 		if (Reflect.hasField(Keyboard, key))
 		{
 			var keyCode:Int = Reflect.field(Keyboard, key);
-			var keys:Array<Int> = new Array<Int>();
-			keys.push(keyCode);
-			Input.define(control, keys);
+			getControl(control).keys = [keyCode];
 		}
 		else
 		{
@@ -30,10 +26,9 @@ class CustomControls
 	public static function addKeyToControl(control:String, keyCode:Int)
 	{
 		trace("Add key code " + keyCode + " to control " + control + ".");
-		var keys:Array<Int> = Input.getControlMap().get(control);
+		var keys:Array<Int> = Input.getControlMap().get(control).keys;
 		keys.remove(keyCode);
 		keys.push(keyCode);
-		Input.define(control, keys);
 	}
 	
 	public static function addKeyToControlByName(control:String, key:String)
@@ -42,10 +37,9 @@ class CustomControls
 		if (Reflect.hasField(Keyboard, key))
 		{
 			var keyCode:Int = Reflect.field(Keyboard, key);
-			var keys:Array<Int> = Input.getControlMap().get(control);
+			var keys:Array<Int> = Input.getControlMap().get(control).keys;
 			keys.remove(keyCode);
 			keys.push(keyCode);
-			Input.define(control, keys);
 		}
 		else
 		{
@@ -56,11 +50,11 @@ class CustomControls
 	public static function getControlConfig():Array<String>
 	{
 		var controlConfig:Array<String> = new Array<String>();
-		var controlMap:Map<String,Array<Int>> = Input.getControlMap();
+		var controlMap:Map<String,Control> = Input.getControlMap();
 		for (control in controlMap.keys())
 		{
-			controlConfig.push(control + ";" + controlMap.get(control).join(","));
-			trace(control + ";" + controlMap.get(control).join(","));
+			controlConfig.push(control + ";" + controlMap.get(control).keys.join(","));
+			trace(control + ";" + controlMap.get(control).keys.join(","));
 		}
 		return controlConfig;
 	}
@@ -77,8 +71,17 @@ class CustomControls
 			{
 				keys.push(Std.parseInt(keyStrings[j]));
 			}
-			Input.define(control, keys);
+			getControl(control).keys = keys;
 			trace("Set control " + control + " to keys " + keys + ".");
 		}
+	}
+	
+	private static function getControl(controlName:String):Control
+	{
+		if(Input.getControlMap().exists(controlName))
+		{
+			return Input.getControlMap().get(controlName);
+		}
+		return Input.define(controlName);
 	}
 }
